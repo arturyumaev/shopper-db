@@ -2,14 +2,13 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   namespace: shopper-db
-  name: shopper-db-migration-2
+  name: shopper-db-migrate
 spec:
   template:
     spec:
       containers:
-      - name: shopper-db-migration-2
-        imagePullPolicy: IfNotPresent
-        image: arturyumaev/public:shopper-db-migration
+      - name: shopper-db-migrate
+        image: arturyumaev/public:shopper-db-migrate
         command: ["goose"]
         args: [
           "-v",
@@ -18,7 +17,7 @@ spec:
           "./migrations",
           "postgres",
           "host=$(POSTGRES_HOST) user=$(POSTGRES_USER) password=$(POSTGRES_PASSWORD) dbname=$(POSTGRES_DB) sslmode=disable",
-          "up" 
+          "up"
           ]
         envFrom:
           - configMapRef:
