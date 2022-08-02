@@ -1,7 +1,7 @@
 -- +goose Up
 -- +goose StatementBegin
-create table if not exists users (
-	id       serial        primary key,
+create table if not exists users.users (
+	id       varchar (100) primary key,
 	username varchar (50)  unique not null,
 	password varchar (50)  not null,
 	email    varchar (255) unique not null
@@ -10,5 +10,5 @@ create table if not exists users (
 
 -- +goose Down
 -- +goose StatementBegin
-drop table users;
+drop table users.users;
 -- +goose StatementEnd
